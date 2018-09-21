@@ -1,0 +1,15 @@
+{
+  "name": "weatherstation",
+  "version": "1.0.0",
+  "description": "BME280 sensor and PIR to detect movement that switches on and off a screen displaying weather info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gerald Michelant",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^2.18.8",
+    "pigpio":"^1.1.2"
+  }
+}

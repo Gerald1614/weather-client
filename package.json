@@ -9,6 +9,7 @@
   "author": "Gerald Michelant",
   "license": "ISC",
   "dependencies": {
+    "bme280-sensor": "^0.1.6",
     "mqtt": "^2.18.8",
     "pigpio":"^1.1.2"
   }

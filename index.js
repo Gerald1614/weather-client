@@ -4,7 +4,7 @@ const mqttAddress = 'mqtt://192.168.2.25';
 let toggleMonitor =  false;
 let togglePage = false;
 const Button = new Gpio(25, {
-	mode: Gpio.INPUT,
+  mode: Gpio.INPUT,
 	pullUpDown: Gpio.PUD_UP,
 	alert: true
   });
@@ -72,16 +72,28 @@ PIRSENSOR.on('alert', (level) => {
         if (error !== null) {
           console.log(`exec error: ${error}`);
         }
-	    });
+      });
+  // child = exec('sh refresh-chromium.sh',
+  // (error, stdout, stderr) => {
+  //     console.log(`${stdout}`);
+  //     console.log(`${stderr}`);
+  //     if (error !== null) {
+  //         console.log(`exec error: ${error}`);
+  //     }
+  // });
+
 	MonitorOff();
   toggleMonitor = true; 
   togglePage = false;
 	console.log(`Monitor on : ${toggleMonitor}`);
 	};
 });
+Button.glitchFilter(10000);
 
-Button.on('alert', (level) => {
-  togglePage = !togglePage;
-  mqttClient.publish('pageBtn', togglePage);     
-  console.log(togglePage);
+Button.on('alert', (level, tick) => {
+  if (level) {
+    togglePage = !togglePage;
+    mqttClient.publish('pageBtn', String(togglePage));     
+    console.log(togglePage);
+  }
 });

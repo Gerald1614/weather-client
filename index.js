@@ -8,6 +8,7 @@ const Button = new Gpio(25, {
 	pullUpDown: Gpio.PUD_UP,
 	alert: true
   });
+  let transferData = [];
   
 const PIRSENSOR = new Gpio(23, {
 	mode: Gpio.INPUT,
@@ -32,10 +33,16 @@ const readSensorData = () => {
   bme280.readSensorData()
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default. 
-      data.timing = new Date;
-      console.log(`data = ${JSON.stringify(data, null, 2)}`);
-      mqttClient.publish('tempSensor', JSON.stringify(data, null, 2), {qos:2});     
-      setTimeout(readSensorData, 10000);
+
+      data.pressure_hPa = data.pressure_hPa.toFixed(2);
+      data.humidity = data.humidity.toFixed(2);
+      data.timing = new Date();
+      transferData.unshift(data)
+      if (transferData.length >5) {
+        transferData.pop();
+      }
+      console.log(`data = ${JSON.stringify(transferData)}`);
+     setTimeout(readSensorData, 10000);
       })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
@@ -60,6 +67,7 @@ function MonitorOff() {
         console.log(`exec error: ${error}`);
       };
     toggleMonitor = false;
+    mqttClient.publish('MonitorOn', String(toggleMonitor));
     console.log(`Monitor on : ${toggleMonitor}`);
     });
 	}, 10000);
@@ -81,9 +89,10 @@ PIRSENSOR.on('alert', (level) => {
   //         console.log(`exec error: ${error}`);
   //     }
   // });
-
-	MonitorOff();
+  MonitorOff();
+  mqttClient.publish('tempSensor', JSON.stringify(transferData));     
   toggleMonitor = true; 
+  mqttClient.publish('MonitorOn', String(toggleMonitor));  
   togglePage = false;
 	console.log(`Monitor on : ${toggleMonitor}`);
 	};

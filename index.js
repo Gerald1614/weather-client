@@ -66,11 +66,11 @@ function MonitorOff() {
       if (error !== null) {
         console.log(`exec error: ${error}`);
       };
-    toggleMonitor = false;
-    mqttClient.publish('MonitorOn', String(toggleMonitor));
-    console.log(`Monitor on : ${toggleMonitor}`);
+        toggleMonitor = false;
+        mqttClient.publish('MonitorOn', String(toggleMonitor));
+        console.log(`Monitor on : ${toggleMonitor}`);
     });
-	}, 10000);
+	}, 15000);
 }
 
 PIRSENSOR.on('alert', (level) => {
@@ -79,7 +79,14 @@ PIRSENSOR.on('alert', (level) => {
     	(error, stdout, stderr) => {
         if (error !== null) {
           console.log(`exec error: ${error}`);
+          return
         }
+         MonitorOff();
+          mqttClient.publish('tempSensor', JSON.stringify(transferData));     
+          toggleMonitor = true; 
+          mqttClient.publish('MonitorOn', String(toggleMonitor));  
+          togglePage = false;
+          console.log(`Monitor on : ${toggleMonitor}`);
       });
   // child = exec('sh refresh-chromium.sh',
   // (error, stdout, stderr) => {
@@ -89,12 +96,7 @@ PIRSENSOR.on('alert', (level) => {
   //         console.log(`exec error: ${error}`);
   //     }
   // });
-  MonitorOff();
-  mqttClient.publish('tempSensor', JSON.stringify(transferData));     
-  toggleMonitor = true; 
-  mqttClient.publish('MonitorOn', String(toggleMonitor));  
-  togglePage = false;
-	console.log(`Monitor on : ${toggleMonitor}`);
+  
 	};
 });
 Button.glitchFilter(10000);

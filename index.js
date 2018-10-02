@@ -34,7 +34,7 @@ const readSensorData = () => {
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default. 
       data.temperature_C = data.temperature_C - 1.5;
-      data.pressure_hPa = data.pressure_hPa.toFixed(2);
+      data.pressure_hPa = data.pressure_hPa.toFixed(2) + 4.5;
       data.humidity = data.humidity.toFixed(2);
       data.timing = new Date();
       transferData.unshift(data)

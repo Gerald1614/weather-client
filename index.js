@@ -33,7 +33,7 @@ const readSensorData = () => {
   bme280.readSensorData()
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default. 
-
+      data.temperature_C = data.temperature_C - 1.5;
       data.pressure_hPa = data.pressure_hPa.toFixed(2);
       data.humidity = data.humidity.toFixed(2);
       data.timing = new Date();
@@ -42,7 +42,7 @@ const readSensorData = () => {
         transferData.pop();
       }
       console.log(`data = ${JSON.stringify(transferData)}`);
-     setTimeout(readSensorData, 10000);
+     setTimeout(readSensorData, 1800000);
       })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
@@ -70,7 +70,7 @@ function MonitorOff() {
         mqttClient.publish('MonitorOn', String(toggleMonitor));
         console.log(`Monitor on : ${toggleMonitor}`);
     });
-	}, 15000);
+	}, 30000);
 }
 
 PIRSENSOR.on('alert', (level) => {

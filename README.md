@@ -16,7 +16,23 @@ Provide code examples and explanations of how to get the project.
 
 ## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+nano ~/.config/lxsession/LXDE-pi/autostart
+
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+#@xscreensaver -no-splash
+@point-rpi
+@xset s noblank
+@xset s off
+@xset -dpms
+@sh /home/pi/start.sh
+@chromium-browser --noerrdialogs --disable-infobars --start-fullscreen 192.168.$
+
+
+pim2
+sudo start pm2 index.js
+
+
 
 ## Tests
 

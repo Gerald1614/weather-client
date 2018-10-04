@@ -34,7 +34,7 @@ const readSensorData = () => {
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default. 
       data.temperature_C = data.temperature_C - 1.5;
-      data.pressure_hPa = (data.pressure_hPa +4.5).toFixed(2);
+      data.pressure_hPa = (data.pressure_hPa +8).toFixed(2);
       data.humidity = data.humidity.toFixed(2);
       data.timing = new Date();
       transferData.unshift(data)
@@ -70,7 +70,7 @@ function MonitorOff() {
         mqttClient.publish('MonitorOn', String(toggleMonitor));
         console.log(`Monitor on : ${toggleMonitor}`);
     });
-	}, 30000);
+	}, 45000);
 }
 
 PIRSENSOR.on('alert', (level) => {
@@ -88,15 +88,6 @@ PIRSENSOR.on('alert', (level) => {
           togglePage = false;
           console.log(`Monitor on : ${toggleMonitor}`);
       });
-  // child = exec('sh refresh-chromium.sh',
-  // (error, stdout, stderr) => {
-  //     console.log(`${stdout}`);
-  //     console.log(`${stderr}`);
-  //     if (error !== null) {
-  //         console.log(`exec error: ${error}`);
-  //     }
-  // });
-  
 	};
 });
 Button.glitchFilter(10000);

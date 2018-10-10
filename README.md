@@ -34,8 +34,9 @@ Thsi project is my frist RPI project butI wanted to consolidate in a single proj
 
 ## Installation
 
-you can pull the project and run npm install to install all dependancies. then, here is the line to start the app, of course, I also added in the package.json so the app can be started by 'npm run start'
-But because of the GPIO library you need to use SUDO to run the app so, 'sudo node index.js'
+you can pull the project and run npm install to install all dependancies. then, here is the line to start the app
+Because of the GPIO library you need to use SUDO to run the app so, 'sudo node -r dotenv/config  index.js'
+In order to faciliate deployement I created a weatherClient.json file that points to Npm start script so i can use PM2 easily. sudo PM2 start weatherClient.json
 
 ## deploy on RPI
 there are many tutorials on how to run node js on RPI, so I will not do it here but I recommend to use PM2. [PM2]:(http://pm2.keymetrics.io/) is a node.js process manager that bring s a lot of nice features but mainly brings you the capability to restart your app if somethign goes wrong.

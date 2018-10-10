@@ -1,0 +1,9 @@
+{
+  "apps": [
+          {
+          "name": "weather-Client",
+          "script": "npm",
+          "args" : "start"
+          }
+          ]
+  }

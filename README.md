@@ -1,15 +1,15 @@
 ## Synopsis
 
-This application is part of a project involving Raspberry Pi to build a Weather Station. What differnetiate this project for other is the setup that seperate clearly front end and backend to provide modularity. The whole project is base don javascript.
+This application is part of a project involving Raspberry Pi to build a Weather Station. What differentiate this project from others is the setup that seperates clearly front end and backend to provide modularity. The whole project is based on javascript.
 
-## description of the main project
-The Project is amix of technologies to provide on a screen information collected by weather sensors and data coming from public API. Becasue there was space left on the screen and it brings a nice touch, I added a slideshow of pictures located on a USB stick.
+## Description of the main project
+The Project is a mix of technologies to provide on a screen information collected by weather sensors and data coming from public API. Becasue there was space left on the screen and it brings a nice touch, I added a slideshow of pictures located on a USB stick.
 
 ## Technologies used
 The idea here was to bring modularity not only in teh way software is built ( so we cna easily add new features) but also in order to be able to bring more devices to cover additional rooms or possibilities. I thus decided to build a back-end with Node JS on a raspberry pi 3 Model B communicating with a raspberry pi zero connected to sensors. I am using MQTT as a MEssage Queue to send data received from sensors to the backend and Socket io to update the infrmation presented to the user Interface. in fact, the raspberry pi zero has two roles has in addition to collect data form sensor and ship them to the back end, it also receive from the backend the presentation layer built on vueJS and served to the browser of the RPi Zero where the screen is also connected.
 
 ## diagram of the solution
-![diagram](/diagram-weather.jpeg)
+![diagram](/diagram-weather.jpg)
 
 ## Components used
 
@@ -64,9 +64,11 @@ the issue is that sometimes, Chromium is throwing an error message (when the RPI
 
 ## References
 
-Here are the links to the other applciations that are part of the project:
-* the UI : [GitHub](http://github.com)
-* the node js app running on the RPI zero
+Here are the links to the other applications that are part of the project:
+* the UI : [bitbucket](https://bitbucket.org/gegeraptor/weather-ui/src/master/)
+* the client node js app running on the RPI zero : [bitbucket (https://bitbucket.org/gegeraptor/weather-client/src/master/)
+* the backend : [bitbucket](https://bitbucket.org/gegeraptor/weather-server/src/master/)
+
 
 
 ## Contributors

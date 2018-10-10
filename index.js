@@ -1,6 +1,6 @@
+require('dotenv').config()
 const Gpio = require('pigpio').Gpio;
 const exec = require('child_process').exec;
-const mqttAddress = 'mqtt://192.168.2.25';
 let toggleMonitor =  false;
 let togglePage = false;
 const Button = new Gpio(25, {
@@ -17,7 +17,7 @@ const PIRSENSOR = new Gpio(23, {
   
 const BME280 = require('bme280-sensor');
 const mqtt = require('mqtt');
-const mqttClient = mqtt.connect(mqttAddress);
+const mqttClient = mqtt.connect(process.env.MQTT_ADDRESS);
 // The BME280 constructor options are optional.
 // 
 const options = {
@@ -70,7 +70,7 @@ function MonitorOff() {
         mqttClient.publish('MonitorOn', String(toggleMonitor));
         console.log(`Monitor on : ${toggleMonitor}`);
     });
-	}, 45000);
+	}, 120000);
 }
 
 PIRSENSOR.on('alert', (level) => {

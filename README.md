@@ -79,6 +79,7 @@ the issue is that sometimes, Chromium is throwing an error message (when the RPI
 
 Here are the links to the other applications that are part of the project:
 
+* the UI version 2: [bitbucket](https://bitbucket.org/gegeraptor/weather-ui-v2/src)
 * User Interface : [bitbucket](https://bitbucket.org/gegeraptor/weather-ui/src/master/)
 * client node.js app running on the RPI zero : [bitbucket](https://bitbucket.org/gegeraptor/weather-client/src/master/)
 * Backend : [bitbucket](https://bitbucket.org/gegeraptor/weather-server/src/master/)

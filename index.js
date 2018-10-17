@@ -70,7 +70,7 @@ function MonitorOff() {
         mqttClient.publish('MonitorOn', String(toggleMonitor));
         console.log(`Monitor on : ${toggleMonitor}`);
     });
-	}, 120000);
+	}, 600000);
 }
 
 PIRSENSOR.on('alert', (level) => {

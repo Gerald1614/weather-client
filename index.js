@@ -42,7 +42,7 @@ const readSensorData = () => {
         transferData.pop();
       }
       console.log(`data = ${JSON.stringify(transferData)}`);
-     setTimeout(readSensorData, 1800000);
+     setTimeout(readSensorData, 900000);
       })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);

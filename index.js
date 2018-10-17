@@ -8,7 +8,7 @@ const Button = new Gpio(25, {
 	pullUpDown: Gpio.PUD_UP,
 	alert: true
   });
-  let transferData = [];
+  let transferData = [{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 }];
   
 const PIRSENSOR = new Gpio(23, {
 	mode: Gpio.INPUT,
@@ -37,9 +37,9 @@ const readSensorData = () => {
       data.pressure_hPa = (data.pressure_hPa +8).toFixed(2);
       data.humidity = data.humidity.toFixed(2);
       data.timing = new Date();
-      transferData.unshift(data)
+      transferData.push(data)
       if (transferData.length >5) {
-        transferData.pop();
+        transferData.shift();
       }
       console.log(`data = ${JSON.stringify(transferData)}`);
      setTimeout(readSensorData, 900000);

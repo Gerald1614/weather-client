@@ -56,6 +56,7 @@ bme280.init()
   .then(() => {
     console.log('BME280 initialization succeeded');
     readSensorData();
+    mqttClient.publish('tempSensor', JSON.stringify(transferData));     
   })
   .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 

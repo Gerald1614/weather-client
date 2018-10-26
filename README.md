@@ -45,12 +45,13 @@ Because of the GPIO library you need to use SUDO to run the app so,
 
 > 'sudo node -r dotenv/config  index.js'
 
-In order to facilitate deployment I created a weatherClient.json file that points to Npm start script so i can use PM2 easily. 
+In order to make sure the app is always up and running, i am using PM2 and created a ecosystem.config.js file that includes the script to connect to th remote server, initiate a git clone then npm install before running the app. 
+so we start the app by running : 
 
-> sudo PM2 start weatherClient.json
+> pm2 deploy production setup
 
 ## deploy on RPI
-there are many tutorials on how to run node js on RPI, so I will not do it here but I recommend to use PM2. [PM2]:(http://pm2.keymetrics.io/) is a node.js process manager that bring s a lot of nice features but mainly brings you the capability to restart your app if something goes wrong.
+there are many tutorials on how to run node js on RPI, so I will not do it here but I recommend to use PM2. [PM2]:(http://pm2.keymetrics.io/) is a node.js process manager that bring s a lot of nice features but mainly brings you the capability to deploy your app to a remote server and restart your app if something goes wrong.
 
 ##Challenges##
 no real challenges to capture data and send them through MQTT, but it is messy to connect a monitor to the raspberry pi and get Chromium Browser to work correctly. once again, I took those recipes form Google, but wanted to share to avoid you having to look at many places.

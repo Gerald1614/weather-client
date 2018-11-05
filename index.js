@@ -8,7 +8,7 @@ const Button = new Gpio(25, {
 	pullUpDown: Gpio.PUD_UP,
 	alert: true
   });
-  let transferData = [{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 },{'pressure_hPa': 0 }];
+  let transferData = [];
   
 const PIRSENSOR = new Gpio(23, {
 	mode: Gpio.INPUT,

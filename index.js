@@ -33,8 +33,8 @@ const readSensorData = () => {
   bme280.readSensorData()
     .then((data) => {
       // temperature_C, pressure_hPa, and humidity are returned by default. 
-      data.temperature_C = (data.temperature_C + process.env.TEMP_ADJUST).toFixed(2);
-      data.pressure_hPa = (data.pressure_hPa  + process.env.PRESSURE_ADJUST).toFixed(2);
+      data.temperature_C = Number(data.temperature_C + process.env.TEMP_ADJUST).toFixed(2);
+      data.pressure_hPa = Number(data.pressure_hPa  + process.env.PRESSURE_ADJUST).toFixed(2);
       data.humidity = data.humidity.toFixed(2);
       data.timing = new Date();
       transferData.push(data)
